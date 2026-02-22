@@ -1,0 +1,5 @@
+{
+  "name": "Minha Sorte",
+  "description": "Gerador de números, palpites IA e resultados para diversas loterias (Mega-Sena, Lotofácil, Quina, etc.) com comunidade e estimativas de prêmios.",
+  "requestFramePermissions": ["camera"]
+}
