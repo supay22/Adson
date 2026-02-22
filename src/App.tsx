@@ -104,7 +104,7 @@ export default function App() {
           setConfNumbers(numbers.join(' '));
           setIsScanning(false);
           if (scannerRef.current) {
-            scannerRef.current.clear();
+            scannerRef.current.clear().catch(err => console.error("Failed to clear scanner", err));
           }
           addNotification('QR Code Lido', 'Números extraídos com sucesso!');
         }
@@ -174,8 +174,12 @@ export default function App() {
 
   useEffect(() => {
     const init = async () => {
-      await fetchAllResults();
-      await fetchDailyPredictions();
+      try {
+        await fetchAllResults();
+        await fetchDailyPredictions();
+      } catch (error) {
+        console.error("Error during initialization:", error);
+      }
     };
     init();
     const savedUser = localStorage.getItem('minhasorte_user');
@@ -255,7 +259,7 @@ export default function App() {
     } catch (error: any) {
       if (error.response?.status === 404) {
         // Not generated for today yet, trigger generation
-        handleGetPredictions();
+        handleGetPredictions().catch(err => console.error("Failed to get predictions:", err));
       }
     }
   };
