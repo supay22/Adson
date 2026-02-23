@@ -6,6 +6,9 @@ import path from "path";
 
 const db = new Database("minhasorte.db");
 
+// NOTE: SQLite (better-sqlite3) will NOT work on Netlify Functions as it is a stateless environment.
+// For Netlify deployment, consider using a remote database like Supabase or MongoDB Atlas.
+
 // Initialize database
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
