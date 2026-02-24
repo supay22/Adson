@@ -15,6 +15,7 @@ export async function getLotteryPredictions(type: string, lastResults: any[]) {
       model,
       contents: prompt,
       config: {
+        tools: [{ googleSearch: {} }],
         responseMimeType: "application/json",
         responseSchema: {
           type: Type.OBJECT,
